@@ -1,0 +1,94 @@
+\documentclass{article}
+
+\usepackage{feynmf}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{cite}
+\usepackage{natbib}
+
+\begin{document}
+\title{Feynamn Diagrams}
+\author{Ossama Algayal} 
+\maketitle
+
+\section*{Drawing Feynman Diagrams on LaTex}
+The lowest-order electron-positron Fenyman diagrams:
+\vspace{1cm}
+\begin{figure*}[h!]
+    \centering
+    
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \begin{fmffile}{annihilation1} % Filename for the diagram
+
+        \begin{fmfgraph*}(100,60) % Graph size (width, height)
+        \fmfleft{i1,i2} % Left side: incoming particles
+        \fmfright{o1,o2} % Right side: outgoing particles
+
+        % First vertex
+        \fmf{fermion}{i1,v1} % Electron (e-) to vertex
+        \fmf{photon}{v1,o1} % Vertex to photon
+
+        % propagator
+        \fmfforce{(0.4w,0.3h)}{v1} % Change vertex position, for time-ordering
+        \fmfforce{(0.6w,0.8h)}{v2} % Change vertex position, for time-ordering
+        \fmf{fermion}{v1,v2}        % Straight propagator between v1 and v2
+
+        % Second vertex
+        \fmf{photon}{o2,v2}
+        \fmf{fermion}{v2,i2}
+
+
+        \fmflabel{$e^-$}{i1}
+        \fmflabel{$e^+$}{i2}
+        \fmflabel{$\gamma$}{o1}
+        \fmflabel{$\gamma$}{o2}
+        \fmfdot{v1,v2}
+
+        \end{fmfgraph*}
+        \end{fmffile}
+
+        \label{annihilation1}
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \begin{fmffile}{annihilation2} % Filename for the diagram
+
+        \begin{fmfgraph*}(100,60) % Graph size (width, height)
+        \fmfleft{i1,i2} % Left side: incoming particles
+        \fmfright{o1,o2} % Right side: outgoing particles
+
+        % First vertex
+        \fmf{fermion}{i1,v1} % Electron (e-) to vertex
+        \fmf{photon}{v1,o1} % Vertex to photon
+
+        % propagator
+        \fmfforce{(0.6w,0.3h)}{v1} % Change vertex position, for time-ordering
+        \fmfforce{(0.4w,0.8h)}{v2} % Change vertex position, for time-ordering
+        \fmf{fermion}{v1,v2}        % Straight propagator between v1 and v2
+
+        % Second vertex
+        \fmf{photon}{o2,v2}
+        \fmf{fermion}{v2,i2}
+
+
+        \fmflabel{$e^-$}{i1}
+        \fmflabel{$e^+$}{i2}
+        \fmflabel{$\gamma$}{o1}
+        \fmflabel{$\gamma$}{o2}
+        \fmfdot{v1,v2}
+
+        \end{fmfgraph*}
+        \end{fmffile}
+
+        \label{annihilation2}
+    \end{subfigure}
+    \vspace{0.5cm}
+    \caption{Feynman graphs for the lowest order contributions to electron-positron annihilation \cite{Booklet} }
+\end{figure*}
+
+\bibliographystyle{unsrt}
+\bibliography{bibliography}
+
+\end{document}
