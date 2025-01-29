@@ -1,0 +1,1 @@
+In task 1 after the make command is ran, the .cpp file is compiled. To run the program, use the executable file with command: ./hello_world.exe <insert integer>
