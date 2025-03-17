@@ -44,11 +44,10 @@ graph_ratios = ROOT.TGraph(
 # Set graph styles
 graph_hdecay.SetLineColor(ROOT.kRed)
 graph_hdecay.SetLineWidth(2)
-graph_hdecay.SetTitle("HDECAY Widths;Mass (GeV);Width (GeV)")
+graph_hdecay.SetTitle("Higgs Boson Width;Mass (GeV);Width (GeV)")
 
 graph_feynhiggs.SetLineColor(ROOT.kBlue)
 graph_feynhiggs.SetLineWidth(2)
-graph_feynhiggs.SetTitle("FeynHiggs Widths;Mass (GeV);Width (GeV)")
 
 
 graph_ratios.SetLineWidth(2)
@@ -56,15 +55,20 @@ graph_ratios.SetTitle("Width Ratio ;Mass (GeV); FeyHiggs / Hdecay")
 
 # Create canvas with two subpads
 canvas = ROOT.TCanvas("canvas", "Width Comparison", 1200, 500)
-canvas.Divide(2, 2)
+canvas.Divide(1, 2)
 
 canvas.cd(1)
 graph_hdecay.Draw("AL")
+graph_feynhiggs.Draw("L SAME")
+
+# Create Legend
+legend = ROOT.TLegend(0.85, 0.7, 0.9, 0.85)
+legend.AddEntry(graph_hdecay, "HDECAY", "l")
+legend.AddEntry(graph_feynhiggs, "FeynHiggs", "l")
+legend.Draw()
+
 
 canvas.cd(2)
-graph_feynhiggs.Draw("AL")
-
-canvas.cd(3)
 graph_ratios.Draw("AL")
 
 # Show the plot
