@@ -1,0 +1,25 @@
+1. The events are generated using pythia8 and outputed into root files. The generating code is 1_event_gen.py and the output files are signal.root and background.root.
+Before pushing this repo to github, we deleted the pythia setup files (pythia 8313), because they are large files. To test event_gen.py code, please copy and paste the neccessary pythia files from your local desktop into the same repo. 
+The trigger efficiency for the signal is 7.61% and the for the background data 1.75%
+
+2.
+a. 2a_muon_selection.py code takes a while to run, since we are accessing each event and looping inside of it to apply the smearing, pT selection and track isolation. 
+    Output: Total events analyzed: 7610, events passing: 4704
+    Events that pass the selection are stored into another root file, pure_muon.root, for further analyses.
+
+b. invariant_mass.py code computes the invariant mass of muon pairs from signal and background ROOT files, using smeared, preselected signal muons and unsmeared background data. 
+It then normalizes the event distributions using known cross-sections and integrated luminosity, and plots histograms showing the signal, background, and combined invariant mass spectra.
+    Plot file: Invariant_mass.png
+
+c. This part is also done in the same file as part b, invariant_mass.py. 
+    Output:
+        Fit signal peak: mu = 91.13 GeV, sigma = 1.58 GeV
+        Mass window: 80–100 GeV
+        Estimated Signal (NS): 215229.1 fb
+        Estimated Background (NB): 283840.3 fb
+        Statistical Significance: 403.98σ
+        Required luminosity for 5σ: 0.0 fb⁻¹
+        Estimated time at CMS: 0.00 years
+
+3. The analysis follows a well-established methodology used in high-energy physics: applying realistic detector smearing, implementing selection criteria, normalizing Monte Carlo samples using theoretical cross-sections and integrated luminosity, and fitting the invariant mass distribution with appropriate signal and background models. So the result is must be reliable. 
+However, while the results are statistically significant they may not be fully convincing without incorporating systematic uncertainties, realistic detector efficiencies, pileup effects, and higher-order corrections to the cross-sections. To make the study more realistic, I would use a full detector simulation (e.g., GEANT4-based), validate my background mode and perform uncertainty propagation on the fit and final significance. Only then results can be confidently presented to the broader scientific community.
